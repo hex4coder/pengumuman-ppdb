@@ -1,6 +1,6 @@
 <?php
 
-require 'core/db.php';
+require_once 'core/db.php';
 
 class UA_Init
 {
@@ -17,7 +17,7 @@ class UA_Init
         $p = mysqli_query($db->connection(), "CREATE TABLE IF NOT EXITS students(
             nomor VARCHAR(13),
             nama VARCHAR(200),
-            
+
         )");
         $q = mysqli_query($db->connection(), "TRUNCATE TABLE students");
         $ret = $q != false;

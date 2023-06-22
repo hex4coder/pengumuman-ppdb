@@ -1,7 +1,7 @@
 <?php
-include 'core/router.php';
+include_once 'core/router.php';
 UA_Router::checkForDashboard();
-include 'core/db.php';
+include_once 'core/db.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,7 +12,7 @@ include 'core/db.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pengumuman PPDB SMKN Campalagian Tahun 2023</title>
 
-    <?php include 'ui/header.php' ?>
+    <?php include_once 'ui/header.php' ?>
 </head>
 
 <body class="background">

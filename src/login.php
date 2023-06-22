@@ -37,7 +37,7 @@ if (isset($_POST['submit'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login | PPDB SMKN Campalagian 2023</title>
 
-    <?php include 'ui/header.php' ?>
+    <?php include_once 'ui/header.php' ?>
 </head>
 
 <!-- content -->
