@@ -1,7 +1,7 @@
 <?php
 include 'core/db.php';
 include 'core/router.php';
-
+include 'core/ppdb.php';
 
 // check jika sudah submit
 $message = '';
@@ -12,6 +12,17 @@ if (isset($_POST['submit'])) {
         $message = 'Format nomor tidak valid';
     } else {
         // cari didatabase
+        $data = UA_Core::getDataByNomor($nomor);
+        if ($data == null) {
+            // tidak ada data
+            $message  = 'Maaf, kami tidak menemukan data dengan nomor ' . $nomor;
+        } else {
+            // data ada
+            // buat session
+            UA_Router::setSession($nomor, $data);
+            // arahkan ke home
+            UA_Router::checkForDashboard();
+        }
     }
 }
 
@@ -27,21 +38,25 @@ if (isset($_POST['submit'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login | PPDB SMKN Campalagian 2023</title>
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
-
-    <!-- Bootstrap JS Bundle -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="assets/css/style.css" />
+    <?php include 'ui/header.php' ?>
 </head>
 
 <!-- content -->
 
 <body>
     <div class="content-full-center bg-light">
+
+
         <form action="login.php" method="post" class="form p-5 bg-white">
+
+            <!-- tampilkan pesan jika ada -->
+            <?php if (strlen($message) > 0) { ?>
+                <!-- check jika ada message -->
+                <div class="alert alert-danger" role="alert">
+                    <?php echo ($message) ?>
+                </div>
+            <?php } ?>
+
             <label>Form</label>
             <h2>Autentikasi</h2>
 
@@ -50,7 +65,7 @@ if (isset($_POST['submit'])) {
             <hr />
 
             <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Nomor Pendaftaran</label>
+                <label class="form-label">Nomor Pendaftaran</label>
                 <input type="text" name="nomor" class="form-control" placeholder="Contoh : 000/PPDB/2023" />
             </div>
             <div class="mt-2">
