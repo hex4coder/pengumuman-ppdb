@@ -1,7 +1,6 @@
 <?php
-include 'core/db.php';
-include 'core/router.php';
-include 'core/ppdb.php';
+include_once 'core/router.php';
+include_once 'core/ppdb.php';
 
 // check jika sudah submit
 $message = '';

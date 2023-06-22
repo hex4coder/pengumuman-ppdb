@@ -16,7 +16,6 @@ class UA_Database
         }
     }
 
-
     public function connection()
     {
         return $this->conn;

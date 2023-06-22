@@ -25,8 +25,8 @@ include 'core/db.php';
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                     <a class="nav-link active" aria-current="page" href="http://smkncampalagian.sch.id">Beranda</a>
-                    <a class="nav-link" href="http://pengumuman.smkncampalagian.sch.id">Informasi</a>
-                    <a class="nav-link p-auto" href="http://pengumuman.smkncampalagian.sch.id/login">Login</a>
+                    <a class="nav-link" href="index.php">Informasi</a>
+                    <a class="nav-link p-auto" href="login.php">Login</a>
                 </div>
             </div>
         </div>
