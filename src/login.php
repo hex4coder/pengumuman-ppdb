@@ -74,6 +74,8 @@ if (isset($_POST['submit'])) {
             </div>
         </form>
     </div>
+
+    <?php include 'ui/footer.php' ?>
 </body>
 
 </html>

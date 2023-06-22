@@ -1,0 +1,1 @@
+<footer class="footer">Copyright &copy; 2023 <strong>Information and Communication Technology (ICT TJKT)</strong> SMKN Campalagian</footer>

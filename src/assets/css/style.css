@@ -28,3 +28,16 @@
     margin-top: 1rem;
     width: 100%;
 }
+
+.footer {
+    width: 100vw;
+    overflow: hidden;
+    padding: 5px;
+    background-color: #fff;
+    color: #333;
+    font-size: .8rem;
+    font-weight: 300;
+    text-align: center;
+    position: fixed;
+    bottom: 1rem;
+}

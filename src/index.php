@@ -31,6 +31,8 @@ include_once 'core/db.php';
             </div>
         </div>
     </nav>
+
+    <?php include 'ui/footer.php' ?>
 </body>
 
 </html>
