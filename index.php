@@ -20,7 +20,7 @@
 <body class="background">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Navbar</a>
+            <a class="navbar-brand" href="http://smkncampalagian.sch.id">Web SMKN Campalagian</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -28,7 +28,7 @@
                 <div class="navbar-nav">
                     <a class="nav-link active" aria-current="page" href="http://smkncampalagian.sch.id">Beranda</a>
                     <a class="nav-link" href="http://pengumuman.smkncampalagian.sch.id">Informasi</a>
-                    <a class="nav-link" href="http://pengumuman.smkncampalagian.sch.id/login">Login</a>
+                    <a class="nav-link p-auto" href="http://pengumuman.smkncampalagian.sch.id/login">Login</a>
                 </div>
             </div>
         </div>

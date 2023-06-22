@@ -5,3 +5,7 @@
     background-size: cover;
     overflow: hidden;
 }
+
+.p-auto {
+    margin-left: auto;
+}
