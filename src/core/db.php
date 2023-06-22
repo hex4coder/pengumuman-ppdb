@@ -2,8 +2,8 @@
 
 class UA_Database
 {
-    protected $host = 'localhost';
-    protected $root = 'pengumuman';
+    protected $host = 'database';
+    protected $root = 'root';
     protected $password = 'p3n9umum4n';
     protected $database = 'pengumumanppdb';
     protected $conn = null;
