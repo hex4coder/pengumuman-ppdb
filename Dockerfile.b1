@@ -1,0 +1,9 @@
+FROM php:8.1.20-fpm-alpine3.18
+
+RUN apk update
+RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
+
+WORKDIR /var/www/html
+
+EXPOSE 9000
+

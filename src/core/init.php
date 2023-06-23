@@ -3,6 +3,8 @@
 require_once 'core/db.php';
 require_once 'core/log.php';
 
+use Box\Spout\Reader\Common\Creator\ReaderEntityFactory;
+
 class UA_Init
 {
 
@@ -31,14 +33,20 @@ class UA_Init
         $db = new UA_Database();
         mysqli_query($db->connection(), "DROP TABLE students");
         mysqli_query($db->connection(), "CREATE TABLE IF NOT EXISTS students(
-            nomor VARCHAR(13) NOT NULL PRIMARY KEY,
-            nik VARCHAR(16) NOT NULL,
-            alamat VARCHAR(254) NOT NULL,
+            nomor_di_jurusan VARCHAR(3) NOT NULL,
             nama VARCHAR(254) NOT NULL,
-            pertama VARCHAR(254) NOT NULL,
-            kedua VARCHAR(254) NOT NULL,
+            nomor_registrasi VARCHAR(13) NOT NULL PRIMARY KEY,
+            pilihan_kedua VARCHAR(254) NOT NULL,
+            jk VARCHAR(20) NOT NULL,
+            dusun VARCHAR(254) NOT NULL,
+            desa VARCHAR(254) NOT NULL,
+            asal_sekolah VARCHAR(254) NOT NULL,
+            nilai_rapor VARCHAR(20) NOT NULL,
+            nilai_bakat_minat VARCHAR(20) NOT NULL,
+            nilai_akhir VARCHAR(20) NOT NULL,
             keterangan VARCHAR(254) NOT NULL,
-            nilai INT NOT NULL
+            lulus_di VARCHAR(254) NOT NULL
+            
         )");
         $q = mysqli_query($db->connection(), "TRUNCATE TABLE students");
         $ret = $q != false;
@@ -48,8 +56,98 @@ class UA_Init
 
     public static function insertAllDataToTableStudents()
     {
-        $db = new UA_Database();
 
-        $db->closeConnection();
+        $path = 'assets/xlsx/data.xlsx';
+        # open the file
+        $reader = ReaderEntityFactory::createXLSXReader();
+        $reader->open($path);
+        # read each cell of each row of each sheet
+        foreach ($reader->getSheetIterator() as $sheet) {
+            $counter = 0;
+            foreach ($sheet->getRowIterator() as $row) {
+                // echo (count($row->getCells()));
+                // echo ("<br/>");
+                // echo ($counter);
+                // echo ("<br/>");
+                // echo ("<br/>");
+
+                if ($counter != 0) {
+                    $colCounter = 0;
+                    $dataCol = [];
+                    foreach ($row->getCells() as $cell) {
+
+                        // nomor
+                        // nama
+                        // nomorreg
+                        // pil2
+                        // jk
+                        // dsn
+                        // desa
+                        // asal
+                        // nr
+                        // ntbm
+                        // na
+                        // ket
+                        // lulusdi
+
+                        if ($colCounter < 13) {
+                            $cv = ($cell->getValue());
+
+                            if ($colCounter == 12) {
+                                // lulus di
+                                $lulusdi = [
+                                    "DKV" => "Desain Komunikasi Visual",
+                                    "TJKT" => "Teknik Jaringan Komputer dan Telekomunikasi",
+                                    "BSN" => "Busana",
+                                    "TO" => "Teknik Otomotif",
+                                    "AKL" => "Akuntansi dan Keuangan Lembaga",
+                                    "MPLB" => "Manajemen Perkantoran dan Layanan Bisnis",
+                                ];
+                                $dataCol[$colCounter] = $lulusdi[$cv];
+                            } else {
+                                $dataCol[$colCounter] = str_replace("'", "_", $cv);
+                            }
+                        }
+
+                        $colCounter++;
+                    }
+
+
+                    $db = new UA_Database();
+                    mysqli_query($db->connection(), "INSERT INTO students(
+                        nomor_di_jurusan,
+                        nama,
+                        nomor_registrasi,
+                        pilihan_kedua,
+                        jk,
+                        dusun,
+                        desa,
+                        asal_sekolah,
+                        nilai_rapor,
+                        nilai_bakat_minat,
+                        nilai_akhir,
+                        keterangan,
+                        lulus_di)
+
+                        VALUES(
+'$dataCol[0]',
+'$dataCol[1]',
+'$dataCol[2]',
+'$dataCol[3]',
+'$dataCol[4]',
+'$dataCol[5]',
+'$dataCol[6]',
+'$dataCol[7]',
+'$dataCol[8]',
+'$dataCol[9]',
+'$dataCol[10]',
+'$dataCol[11]',
+'$dataCol[12]')");
+                    $db->closeConnection();
+                }
+                $counter++;
+            }
+        }
+        $reader->close();
     }
 }
