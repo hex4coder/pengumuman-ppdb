@@ -8,7 +8,7 @@ class UA_Core
     {
         $db = new UA_Database();
 
-        $query = "SELECT * FROM PPDB WHERE nomor='$nomor'";
+        $query = "SELECT * FROM students WHERE nomor_registrasi='$nomor'";
         if ($q = mysqli_query($db->connection(), $query)) {
             $data = mysqli_fetch_assoc($q);
             $numrows =  mysqli_num_rows($q);
@@ -25,7 +25,7 @@ class UA_Core
     {
         $db = new UA_Database();
 
-        $query = "SELECT * FROM PPDB WHERE nomor='$nomor'";
+        $query = "SELECT * FROM students WHERE nomor_registrasi='$nomor'";
         $q = mysqli_query($db->connection(), $query);
 
         if (!$q) {

@@ -31,11 +31,16 @@ class UA_Router
         $_SESSION[UA_Router::$DATA_KEY] = $data;
     }
 
+    // ambil data di session
+    public static function getDataFromSession()
+    {
+        return $_SESSION[UA_Router::$DATA_KEY];
+    }
+
     // Hapus session
     public static function clearSession()
     {
-        session_unset(UA_Router::$SESSION_KEY);
-        session_unset(UA_Router::$DATA_KEY);
+        session_unset();
         session_destroy();
 
         // redirect ke home

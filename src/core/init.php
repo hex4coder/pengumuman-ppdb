@@ -149,5 +149,8 @@ class UA_Init
             }
         }
         $reader->close();
+
+
+        return true;
     }
 }
